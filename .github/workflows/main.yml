@@ -64,15 +64,15 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
           haxelib set openfl 9.2.1
-          haxelib set lime 8.0.1
+          haxelib set lime git
           haxelib set flixel 5.2.2
           haxelib set flixel-addons 3.0.2
-          haxelib set hxcpp 4.2.1
+          haxelib set hxcpp git
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Building
-        run: haxelib run lime build android -final
+        run:  haxelib run lime build android
 
       - name: Clear Previous Cache
         uses: actions/github-script@main
