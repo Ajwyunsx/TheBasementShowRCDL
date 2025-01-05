@@ -9,7 +9,7 @@ import openfl.utils.Assets as OpenFlAssets;
 
 #if VIDEOS_ALLOWED
 
-import vlc.MP4Handler;
+import VideoHandler;
 
 #end
 
