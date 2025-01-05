@@ -19,7 +19,7 @@ import sys.thread.Thread;
 #end
 
 #if VIDEOS_ALLOWED
-import vlc.MP4Handler;
+import VideoHandler;
 #end
 
 #if sys
@@ -110,7 +110,7 @@ class TBSIntroState extends MusicBeatState
                     FlxG.sound.muted = FlxG.save.data.mute;
             }
 
-            var video:MP4Handler = new MP4Handler();
+            var video:VideoHandler = new VideoHandler();
             video.playVideo(filepath);
             video.finishCallback = function()
             {
