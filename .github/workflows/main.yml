@@ -16,11 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
-      - name: Setup Android NDK
-        id: setup-ndk
-        uses: nttld/setup-ndk@main
-        with:
-          ndk-version: r21e
       - name: Setup Java JDK
 
         uses: actions/setup-java@main
@@ -31,7 +26,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.3.6
 
       - name: Restore Previous Cache
         id: cache-debug-build-android-restore
