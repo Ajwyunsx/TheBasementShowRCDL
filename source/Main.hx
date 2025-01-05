@@ -11,8 +11,6 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 
-//crash handler stuff
-#if CRASH_HANDLER
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
@@ -21,7 +19,6 @@ import Discord.DiscordClient;
 import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
-#end
 
 using StringTools;
 
