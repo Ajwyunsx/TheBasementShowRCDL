@@ -12,7 +12,8 @@ import llua.State;
 using StringTools;
 
 class DiscordClient
-{       #if desktop
+{      
+	#if desktop
 	public static var isInitialized:Bool = false;
 	public function new()
 	{
@@ -101,5 +102,5 @@ class DiscordClient
 		});
 	}
 	#end
-	end
+	#end
 }
