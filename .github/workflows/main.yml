@@ -28,10 +28,13 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@main
+
       - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
+        uses: krdlab/setup-haxe@v1.2.0
         with:
-          haxe-version: 4.3.6
+          haxe-version: 4.2.5
 
       - name: Restore Previous Cache
         id: cache-debug-build-android-restore
