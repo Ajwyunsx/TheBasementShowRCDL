@@ -38,6 +38,10 @@ class TBSIntroState extends MusicBeatState
         PlayerSettings.init();
         ClientPrefs.loadPrefs();
 
+        #if android
+	FlxG.android.preventDefaultKeys = [BACK];
+	#end
+
 		if(FlxG.save.data.showFPS != null) {
 			ClientPrefs.showFPS = FlxG.save.data.showFPS;
 			if(Main.fpsVar != null) {
