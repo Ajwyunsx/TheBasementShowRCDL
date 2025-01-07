@@ -1429,7 +1429,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
-		var daScripts:Array<String> = ['Camera Follow Pos', 'shader', 'Triple Trouble Cover Script 1', 'Triple Trouble Cover Script 2', 'GF Script', 'strumlineAnims', 'strumlinescript', 'Windows Resize', 'Splatter Script 2', 'Splatter Script 1', 'BloodN Cartoon OLD Script', 'Video End Script', 'Video Script', 'chromaticShader', 'Custom Death Script', 'Desire or Despair Script 1', 'Desire or Despair Script 2', 'Evaporate Script 1', 'Evaporate Script 2', 'Evaporate Script 3', 'Faded HUD', 'Frozen Bell Script', 'Funny Cartoon Script 1', 'Funny Cartoon Script 2', 'House for Sale Script'， 'Hydrophobia Script', 'Invade Script 1', 'Invade Script 2', 'Invade OLD Script 1', 'Invade OLD Script 2', '[Menaced] Song Name Script', 'Warning Dodge Script', 'Mucho Start']; // I don't think I need to explain this 
+		var daScripts:Array<String> = ['Camera Follow Pos', 'shader', 'Triple Trouble Cover Script 1', 'Triple Trouble Cover Script 2', 'GF Script', 'strumlineAnims', 'strumlinescript', 'Windows Resize', 'Splatter Script 2', 'Splatter Script 1', 'BloodN Cartoon OLD Script', 'Video End Script', 'Video Script', 'chromaticShader', 'Custom Death Script', 'Desire or Despair Script 1', 'Desire or Despair Script 2', 'Evaporate Script 1', 'Evaporate Script 2', 'Evaporate Script 3', 'Faded HUD', 'Frozen Bell Script', 'Funny Cartoon Script 1', 'Funny Cartoon Script 2', 'House for Sale Script', 'Hydrophobia Script', 'Invade Script 1', 'Invade Script 2', 'Invade OLD Script 1', 'Invade OLD Script 2', '[Menaced] Song Name Script', 'Warning Dodge Script', 'Mucho Start']; // I don't think I need to explain this 
 		for (script in daScripts) {
 		var scriptPath:String = Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/' + script + '.lua');
 			if (OpenFlAssets.exists(scriptPath))
@@ -1631,30 +1631,25 @@ class PlayState extends MusicBeatState
 			return true;
 		}
 
-		var foldersToCheck:Array<String> = [Paths.mods('shaders/')];
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/shaders/'));
-
-		for(mod in Paths.getGlobalMods())
-			foldersToCheck.insert(0, Paths.mods(mod + '/shaders/'));
+		var foldersToCheck:Array<String> = [Paths.getPreloadPath('shaders/')];
 		
 		for (folder in foldersToCheck)
 		{
-			if(FileSystem.exists(folder))
+			if(Assets.exists(folder))
 			{
 				var frag:String = folder + name + '.frag';
 				var vert:String = folder + name + '.vert';
 				var found:Bool = false;
-				if(FileSystem.exists(frag))
+				if(OpenFlAssets.exists(frag))
 				{
-					frag = File.getContent(frag);
+					frag = OpenFlAssets.getText(frag);
 					found = true;
 				}
 				else frag = null;
 
-				if (FileSystem.exists(vert))
+				if (OpenFlAssets.exists(vert))
 				{
-					vert = File.getContent(vert);
+					vert = OpenFlAssets.getText(vert);
 					found = true;
 				}
 				else vert = null;
@@ -1665,6 +1660,7 @@ class PlayState extends MusicBeatState
 					//trace('Found shader $name!');
 					return true;
 				}
+			}
 			}
 		}
 		FlxG.log.warn('Missing shader $name .frag AND .vert files!');
