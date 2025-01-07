@@ -120,6 +120,11 @@ class TitleState extends MusicBeatState
 		}
 		#end*/
 
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		//removeVirtualPad();
+		#end
+
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.sound.muteKeys = muteKeys;
 		FlxG.sound.volumeDownKeys = volumeDownKeys;
