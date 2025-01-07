@@ -12,11 +12,12 @@ import llua.State;
 using StringTools;
 
 class DiscordClient
-{
+{       #if desktop
 	public static var isInitialized:Bool = false;
 	public function new()
 	{
 		trace("Discord Client starting...");
+		
 		DiscordRpc.start({
 			clientID: "1310199662506147850",
 			onReady: onReady,
@@ -100,4 +101,5 @@ class DiscordClient
 		});
 	}
 	#end
+	end
 }
