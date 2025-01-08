@@ -15,7 +15,7 @@ import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.FlxBasic;
 #if android
-import mobile.flixel.*;
+import mobile.flixel.FlxVirtualPad;
 import mobile.*;
 import flixel.input.actions.FlxActionInput;
 import flixel.util.FlxDestroyUtil;
