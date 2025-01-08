@@ -71,7 +71,7 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
-				if(FlxG.keys.justPressed.ENTER) {
+				if(controls.ACCEPT) {
 					FlxG.save.data.firstTime = false;
 					FlxTween.tween(myeyes, {alpha: 1}, 1);
 					FlxG.sound.play(Paths.sound('confirmMenu'));
