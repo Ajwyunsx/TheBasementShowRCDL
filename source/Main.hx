@@ -44,7 +44,6 @@ class Main extends Sprite
 		"Splatter",
 		"toothless",
 		"W1End",
-		"Portal",
 		"W1",
 		"W2End",
 		"W2",
