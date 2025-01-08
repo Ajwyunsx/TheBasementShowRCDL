@@ -25,7 +25,7 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
-#if mobileC
+#if android
 import mobile.*;
 #end
 
