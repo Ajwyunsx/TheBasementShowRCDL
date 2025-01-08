@@ -11,16 +11,16 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 
+#if CRASH_HANDLER
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import haxe.io.Path;
-#if desktop
 import Discord.DiscordClient;
+import sys.io.Process;
 #end
 import sys.FileSystem;
 import sys.io.File;
-import sys.io.Process;
 
 using StringTools;
 
@@ -33,6 +33,15 @@ class Main extends Sprite
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	
+	public static var fpsVar:FPS;
+
+	// You can pretty much ignore everything from here on - your code should go in your states.
+
+	public static function main():Void
+	{
+		Lib.current.addChild(new Main());
+	}
 
 	static final videoFiles:Array<String> = [
 		"BasementIntro",
@@ -49,17 +58,8 @@ class Main extends Sprite
 		"W3",
 		"W3 End",
 		"W4",
-		"W4 End",
+		"W4 End"
 	];
-	
-	public static var fpsVar:FPS;
-
-	// You can pretty much ignore everything from here on - your code should go in your states.
-
-	public static function main():Void
-	{
-		Lib.current.addChild(new Main());
-	}
 
 	public function new()
 	{
@@ -109,14 +109,12 @@ class Main extends Sprite
 		#end
 
 		Generic.mode = ROOTDATA;
-		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets');
-		}
+
 		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
 			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
 		}
 
-        for (vid in videoFiles) {
+                for (vid in videoFiles) {
 			Generic.copyContent(Paths._video(vid), Paths._video(vid));
 		}
 	
