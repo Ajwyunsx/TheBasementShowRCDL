@@ -192,7 +192,7 @@ class Paths
 
 	static public function video(key:String)
 	{
-		return Generic.returnPath() + 'assets/videos/$key.$VIDEO_EXT';
+		return Assets2File.getPath('assets/videos/$key.$VIDEO_EXT');
 	}
 	
 	static public function _video(key:String)
