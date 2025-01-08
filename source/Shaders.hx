@@ -91,8 +91,8 @@ class OldTVShader extends FlxShader
     {
         uv = (uv - 0.5) * 2.0;
       	uv *= 1.1;
-      	uv.x *= 1.0 + pow((abs(uv.y) / 4.5), 2);
-      	uv.y *= 1.0 + pow((abs(uv.x) / 3.5), 2);
+      	uv.x *= 1.0 + pow((abs(uv.y) / 4.5), 2.0);
+      	uv.y *= 1.0 + pow((abs(uv.x) / 3.5), 2.0);
       	uv  = (uv / 2.0) + 0.5;
       	uv =  uv *0.92 + 0.04;
       	return uv;
@@ -140,13 +140,13 @@ class OldTVShader extends FlxShader
     	uv = scandistort(curUV);
     	vec4 video = getVideo(uv);
       float vigAmt = 1.0;
-      float x = 0;
+      float x = 0.0;
       float grainFactor = filmGrainNoise(iTime, uv);
 
 
-      video.r = getVideo(vec2(x+uv.x+0.001,uv.y+1)).x + abs(sin(0.12 * redOpac)); // used for sirokous fire part
-      video.g = getVideo(vec2(x+uv.x-0.001,uv.y+1)).y + abs(sin(0.06 * blueOpac));
-      video.b = getVideo(vec2(x+uv.x-0.001,uv.y+1)).z + abs(sin(0.06 * blueOpac));
+      video.r = getVideo(vec2(x+uv.x+0.001,uv.y+1.0)).x + abs(sin(0.12 * redOpac)); // used for sirokous fire part
+      video.g = getVideo(vec2(x+uv.x-0.001,uv.y+1.0)).y + abs(sin(0.06 * blueOpac));
+      video.b = getVideo(vec2(x+uv.x-0.001,uv.y+1.0)).z + abs(sin(0.06 * blueOpac));
     	vigAmt = 2.+.1*sin(iTime + 5.*cos(iTime*5.));
 
     	float vignette = (1.1-vigAmt*(uv.y-.5)*(uv.y-.5))*(0.1-vigAmt*(uv.x-.5)*(uv.x-.5));
@@ -154,7 +154,7 @@ class OldTVShader extends FlxShader
       gl_FragColor = mix(video,vec4(noise(uv * 75.)),.05);
 
       if(curUV.x<0. || curUV.x>1. || curUV.y<0. || curUV.y>1.){
-        gl_FragColor = vec4(0,0,0,0);
+        gl_FragColor = vec4(0.0,0.0,0.0,0.0);
       }
 
     }
@@ -180,7 +180,7 @@ class MenusGlow extends FlxShader
 // GAUSSIAN BLUR SETTINGS
 uniform float dim;
 float directions = 8.0;
-float quality = 4;
+float quality = 4.0;
 //float directions = 16;
 //float quality = 30;
 uniform float size; 
@@ -205,7 +205,7 @@ void main(void)
         }
     }
 
-    Color /= max(aaply - (directions - 1.0), 1);//(dim * quality) * directions - (directions - 1.0);
+    Color /= max(aaply - (directions - 1.0), 1.0);//(dim * quality) * directions - (directions - 1.0);
     vec4 bloom =  (flixel_texture2D( bitmap, uv)/ dim)+Color;
 
     gl_FragColor = bloom;
@@ -256,7 +256,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     // Chromatic
     col.r = texture(iChannel0,vec2(uv.x+0.002,uv.y)).x;
     col.g = texture(iChannel0,vec2(uv.x,uv.y)).y;
-    col.b = texture(iChannel0,vec2(uv.x+0.002 * -1,uv.y)).z;
+    col.b = texture(iChannel0,vec2(uv.x+0.002 * -1.0,uv.y)).z;
 
     col *= step(0.0, uv.x) * step(0.0, uv.y);
     col *= 1.0 - step(1.0, uv.x) * 1.0 - step(1.0, uv.y);
