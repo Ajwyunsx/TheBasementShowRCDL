@@ -58,12 +58,16 @@ class FlashingState extends MusicBeatState
 		myeyes = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		myeyes.alpha = 0;
 		add(myeyes);
+
+		#if android
+                addVirtualPad(NONE, A_B);
+                #end
 	}
 
 	override function update(elapsed:Float)
 	{
 		if(!leftState) {
-			if (FlxG.keys.justPressed.ENTER || FlxG.keys.justPressed.ESCAPE) {
+			if (virtualPad.buttonA.justPressed || virtualPad.buttonB.justPressed) {
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
@@ -78,7 +82,7 @@ class FlashingState extends MusicBeatState
 							MusicBeatState.switchState(new ShadersState());
 						});
 					});
-				} else if (FlxG.keys.justPressed.ESCAPE) {
+				} else if (virtualPad.buttonB.justPressed) {
 					FlxG.save.data.flashing = false;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					FlxTween.tween(warnText, {alpha: 0}, 1, {
