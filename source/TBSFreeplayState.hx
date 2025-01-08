@@ -175,7 +175,7 @@ class TBSFreeplayState extends MusicBeatState
 		songNameThing.y -= 650;
 		add(songNameThing);
 		#if android
-                addVirtualPad(LEFT_FULL, A_B_C);
+                addVirtualPad(LEFT_FULL, A_B);
                 #end
 		
         super.create();
