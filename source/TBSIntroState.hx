@@ -80,7 +80,11 @@ class TBSIntroState extends MusicBeatState
             #if VIDEOS_ALLOWED
             var filepath:String = Paths.video(name);
             
+            #if sys
+            if(!FileSystem.exists(filepath))
+            #else
             if(!OpenFlAssets.exists(filepath))
+            #end
             {
                 FlxG.log.warn('Couldnt find video file: ' + name);
                 return;
