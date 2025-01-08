@@ -67,7 +67,7 @@ class FlashingState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if(!leftState) {
-			if (virtualPad.buttonA.justPressed || virtualPad.buttonB.justPressed) {
+			if (controls.ACCEPT || controls.BACK) {
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
@@ -82,7 +82,7 @@ class FlashingState extends MusicBeatState
 							MusicBeatState.switchState(new ShadersState());
 						});
 					});
-				} else if (virtualPad.buttonB.justPressed) {
+				} else if (controls.BACK) {
 					FlxG.save.data.flashing = false;
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					FlxTween.tween(warnText, {alpha: 0}, 1, {
