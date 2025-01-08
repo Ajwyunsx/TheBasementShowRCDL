@@ -217,7 +217,9 @@ class MainMenuState extends MusicBeatState
 		xy.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		xy.scrollFactor.set(0, yScroll);
 		//add(xy);
-
+                #if android
+                addVirtualPad(UP_DOWN, A_B);
+                #end
 		super.create();
 	}
 
