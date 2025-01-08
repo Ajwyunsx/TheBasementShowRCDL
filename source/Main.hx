@@ -36,6 +36,24 @@ class Main extends Sprite
 	
 	public static var fpsVar:FPS;
 
+	static final videoFiles:Array<String> = [
+		"BasementIntro",
+		"Chainsaw Maniac",
+		"Lyrics",
+		"Sirokou",
+		"Splatter",
+		"toothless",
+		"W1 End",
+		"Portal",
+		"W1",
+		"W2 End",
+		"W2",
+		"W3",
+		"W3 End",
+		"W4",
+		"W4 End",
+	];
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void
@@ -46,6 +64,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		Generic.initCrashHandler();
 
 		if (stage != null)
 		{
@@ -101,6 +120,16 @@ class Main extends Sprite
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
+		}
+
+		Generic.mode = ROOTDATA;
+		
+		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
+		}
+
+                for (video in videoFiles) {
+		Generic.copyContent(Paths._video(video), Paths._video(video));
 		}
 
 		#if html5
