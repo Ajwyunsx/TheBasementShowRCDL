@@ -174,6 +174,9 @@ class TBSFreeplayState extends MusicBeatState
 		songNameThing = new FlxSprite(320, 360).loadGraphic(Paths.image('freeplay/songs/Vanishing-OLD'));
 		songNameThing.y -= 650;
 		add(songNameThing);
+		#if android
+                addVirtualPad(LEFT_FULL, A_B_C);
+                #end
 		
         super.create();
 	}
