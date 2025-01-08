@@ -43,29 +43,9 @@ class Main extends Sprite
 		Lib.current.addChild(new Main());
 	}
 
-	static final videoFiles:Array<String> = [
-		"BasementIntro",
-		"Chainsaw Maniac",
-		"Lyrics",
-		"Sirokou",
-		"Splatter",
-		"toothless",
-		"W1 End",
-		"Portal",
-		"W1",
-		"W2 End",
-		"W2",
-		"W3",
-		"W3 End",
-		"W4",
-		"W4 End"
-	];
-
 	public function new()
 	{
 		super();
-
-		Generic.initCrashHandler();
 
 		if (stage != null)
 		{
@@ -107,16 +87,6 @@ class Main extends Sprite
 		if (zoom == -1.0)
 			zoom = 1.0;
 		#end
-
-		Generic.mode = ROOTDATA;
-
-		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
-		}
-
-                for (vid in videoFiles) {
-			Generic.copyContent(Paths._video(vid), Paths._video(vid));
-		}
 	
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
