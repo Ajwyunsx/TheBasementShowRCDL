@@ -24,6 +24,9 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+#if mobileC
+import mobile.*;
+#end
 
 using StringTools;
 
@@ -42,14 +45,29 @@ class OptionsState extends MusicBeatState
 	function openSelectedSubstate(label:String) {
 		switch(label) {
 			case 'Note Colors':
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.NotesSubState());
 			case 'Controls':
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.ControlsSubState());
 			case 'Graphics':
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.GraphicsSettingsSubState());
 			case 'Visuals and UI':
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
+				#if android
+				removeVirtualPad();
+				#end
 				openSubState(new options.GameplaySettingsSubState());
 		}
 	}
@@ -80,8 +98,25 @@ class OptionsState extends MusicBeatState
 			grpOptions.add(optionText);
 		}
 
+		#if android
+		var tipText:FlxText = new FlxText(10, 12, 0, 'Press X to Go In Android Controls Menu', 16);
+		tipText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		tipText.borderSize = 2;
+		tipText.scrollFactor.set();
+		add(tipText);
+		var tipText:FlxText = new FlxText(10, 32, 0, 'Press Y to Go In Hitbox Settings Menu', 16);
+		tipText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		tipText.borderSize = 2;
+		tipText.scrollFactor.set();
+		add(tipText);
+		#end
+
 		changeSelection();
 		ClientPrefs.saveSettings();
+
+		#if android
+		addVirtualPad(UP_DOWN, A_B_X_Y);
+		#end
 
 		super.create();
 	}
@@ -110,6 +145,17 @@ class OptionsState extends MusicBeatState
 			LoadingState.loadAndSwitchState(new PlayState());
 			}
 		}
+
+		#if android
+		if (virtualpad.buttonX.justPressed) {
+			removeVirtualPad();
+			openSubState(new MobileControlsSubState());
+		}
+		if (virtualpad.buttonY.justPressed) {
+		        removeVirtualPad();
+			openSubState(new HitboxSettingsSubState());
+		}
+		#end
 
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
