@@ -117,6 +117,7 @@ class TBSIntroState extends MusicBeatState
 
             var video:VideoHandler = new VideoHandler();
             video.playVideo(filepath);
+	    video.canSkip = true;
             video.finishCallback = function()
             {
                 MusicBeatState.switchState(new TitleState()); //this will make after the video done it will switch to the intro text/ title state
