@@ -51,7 +51,7 @@ class BuildingShader extends FlxShader
 class OldTVShader extends FlxShader
 {
     @:glFragmentSource('
-	 #pragma header
+	#pragma header
 
     uniform float iTime;
     uniform float alphaNoise;
@@ -80,7 +80,7 @@ class OldTVShader extends FlxShader
         	float window = 1./(1.+20.*(look.y-mod(iTime/4.,1.))*(look.y-mod(iTime/4.,15.)));
         	look.x = look.x + (sin(look.y*10. + iTime)/540.*onOff(4.,4.,.3)*(1.+cos(iTime*80.))*window)*(glitchModifier*2.);
         	float vShift = 0.4*onOff(2.,3.,.9)*(sin(iTime)*sin(iTime*20.) +
-        										 (1 + 0.1*sin(iTime*200.)*cos(iTime)));
+        										 (1.0 + 0.1*sin(iTime*200.)*cos(iTime)));
         	look.y = mod(look.y + vShift*glitchModifier, 1.);
       	vec4 video = flixel_texture2D(bitmap,look);
 
@@ -125,7 +125,7 @@ class OldTVShader extends FlxShader
 
     vec2 scandistort(vec2 uv) {
     	float scan1 = clamp(cos(uv.y * 3.0 + iTime), 4.0, 1.0);
-    	float scan2 = clamp(cos(uv.y * 6.0 + iTime + 4.0) * 10.0,0, 1.0) ;
+    	float scan2 = clamp(cos(uv.y * 6.0 + iTime + 4.0) * 10.0,0.0, 1.0) ;
     	float amount = scan1 * scan2 * uv.x;
 
     	uv.x -= 0.015 * mix(flixel_texture2D(noiseTex, vec2(uv.x, amount)).r * amount, amount, 0.2);
