@@ -63,7 +63,12 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		
+		#if android
+		Sys.setCwd(Path.addTrailingSlash(Context.getFilesDir()));
 		Generic.initCrashHandler();
+		#end
+		
 
 		if (stage != null)
 		{
