@@ -21,7 +21,9 @@ import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import haxe.io.Path;
+#if desktop
 import Discord.DiscordClient;
+#end
 import sys.io.Process;
 #end
 import sys.FileSystem;
