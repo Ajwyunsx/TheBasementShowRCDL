@@ -175,7 +175,7 @@ class ShadersState extends MusicBeatState
 			}
 		
 			if (curSelected != -1) {
-				FlxG.sound.play(Paths.sound("menu/scrollMenu"));
+				FlxG.sound.play(Paths.sound("scrollMenu"));
 		
 				var curText:FlxSprite = options.members[curSelected];   
 				curText.color = 0xFFFFFF;
