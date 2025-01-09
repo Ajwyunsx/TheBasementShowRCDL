@@ -50,13 +50,8 @@ class CreditsState extends MusicBeatState
 		add(grpOptions);
 
 	
-
-		var arrayOfFolders:Array<String> = Paths.getPath();
-		arrayOfFolders.push('');
-		for (folder in arrayOfFolders)
-		{
-			pushModCreditsToList(folder);
-		}
+		pushModCreditsToList();
+		
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Psych Engine Team'],
@@ -266,7 +261,7 @@ class CreditsState extends MusicBeatState
 		descBox.updateHitbox();
 	}
 
-	function pushModCreditsToList(folder:String)
+	function pushModCreditsToList()
 	{
 
 		var creditsFile:String = null;
@@ -278,7 +273,6 @@ class CreditsState extends MusicBeatState
 			for(i in firstarray)
 			{
 				var arr:Array<String> = i.replace('\\n', '\n').split("::");
-				if(arr.length >= 5) arr.push(folder);
 				creditsStuff.push(arr);
 			}
 			creditsStuff.push(['']);
