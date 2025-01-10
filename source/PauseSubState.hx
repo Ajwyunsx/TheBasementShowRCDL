@@ -312,6 +312,11 @@ class PauseSubState extends MusicBeatSubstate
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
+                #if android
+		addVirtualPad(UP_DOWN, A);
+		addVirtualPadCamera(false);
+		#end
+
 		xy = new FlxText(0, 0);
 			xy.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			//add(xy);
