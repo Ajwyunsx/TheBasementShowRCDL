@@ -1397,7 +1397,7 @@ class PlayState extends MusicBeatState
 		doof.cameras = [camHUD];
 		
 		#if mobile
-        addMobileControls(); //if hud disappears add false inside to ().
+        addMobileControls(false); //if hud disappears add false inside to ().
         #end
 
 		// if (SONG.song == 'South')
