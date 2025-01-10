@@ -267,6 +267,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				reloadCheckboxes();
 			}
+		}
 
 		if(boyfriend != null && boyfriend.animation.curAnim.finished) {
 			boyfriend.dance();
