@@ -1396,7 +1396,7 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		
-		#if mobileC
+		#if mobile
         addMobileControls(); //if hud disappears add false inside to ().
         #end
 
@@ -5593,8 +5593,8 @@ class PlayState extends MusicBeatState
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
 		
-		#if mobileC
-        removeMobileControls();
+		#if mobile
+        mobileControls.visible = false;
         #end
 
 		Conductor.changeBPM(100);
