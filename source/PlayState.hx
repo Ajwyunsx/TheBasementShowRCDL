@@ -1395,6 +1395,10 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		
+		#if mobileC
+        addMobileControls(); //if hud disappears add false inside to ().
+        #end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -5588,6 +5592,10 @@ class PlayState extends MusicBeatState
 		#if hscript
 		if(FunkinLua.hscript != null) FunkinLua.hscript = null;
 		#end
+		
+		#if mobileC
+        removeMobileControls();
+        #end
 
 		Conductor.changeBPM(100);
 
